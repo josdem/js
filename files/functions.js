@@ -2,7 +2,7 @@ var countingRedCards = function(parkingLot){
   var counter = 0
 
   parkingLot.forEach(function(car){
-    if(car.color === 'Red'){
+    if(car.color == 'Red'){
       counter++
     }
   })

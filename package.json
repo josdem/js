@@ -1,0 +1,22 @@
+{
+  "name": "clase-1",
+  "version": "1.0.0",
+  "description": "Clase 1",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josdem/js.git"
+  },
+  "author": "josdem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josdem/js/issues"
+  },
+  "homepage": "https://github.com/josdem/js#readme",
+  "dependencies": {
+    "inquirer": "^0.11.3"
+  }
+}

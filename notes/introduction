@@ -17,3 +17,9 @@ Fucntions:
 * Methods
 * Callbacks
 
+## To Create package.json
+npm init
+
+## To Install Inquier
+npm install inquirer --save
+
