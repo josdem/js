@@ -38,6 +38,10 @@ var application = express()
     })
   })
 
+application.post('/addToDo', function(request, response){
+  response.send('Informacion mandada')
+})
+
 application.listen(3000, function(){
   console.log('Server ready and listening at: 3000')
 })
