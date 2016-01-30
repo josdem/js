@@ -2,6 +2,7 @@ var express = require('express')
 var swig = require('swig')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+var inquirer = require('inquirer')
 var Schema = mongoose.Schema
 
 mongoose.connect('mongodb://localhost/todo')
@@ -23,10 +24,10 @@ var application = express()
   //Cache configuration
   // ToDo: Change cache:true in production
   application.set('view cache', false)
-  swig.setDefaults({cache:false})
+swig.setDefaults({cache:false})
 
   //Adding body parser to express
-  application.use( bodyParser.urlencoded({ extended:false }))
+application.use( bodyParser.urlencoded({ extended:false }))
 
   application.get("/",function(request, response){
 
@@ -43,7 +44,16 @@ var application = express()
   })
 
 application.post('/addToDo', function(request, response){
-  response.send('Informacion mandada', request.body)
+    ToDo.create({
+      name:request.body.name,
+      description:request.body.description
+    }, function(err, doc){
+      if(err){
+        return response.send(500, 'Internal Server Error')
+      }
+
+    response.redirect('/')
+    })
 })
 
 application.listen(3000, function(){
