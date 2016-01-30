@@ -5,6 +5,11 @@
   </head>
   <body>
     <h1>{{title}}</h1>
+    <ul>
+      {% for toDo in toDos %}
+        <li>{{toDo.name}}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
 
