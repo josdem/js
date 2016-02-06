@@ -49,7 +49,7 @@ app.get('/', function (req, res) {
 
 app.get('/view-counter', function (req, res){
   if(req.session.counter){
-    req.session.counter += 1
+    req.session.counter++
   } else {
     req.session.counter = 1
   }

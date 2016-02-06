@@ -46,6 +46,9 @@ app.use( bodyParser.urlencoded({ extended:false }) )
 app.use(function (req, res, next){
 	// Si el usuario esta blockeado
 	// mostrar un 403
+  if(req.session.blocked){
+    return res.send(403, 'Forbidden')
+  }
 
 	next()
 })
