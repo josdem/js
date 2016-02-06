@@ -49,12 +49,19 @@ app.get('/', function (req, res) {
 
 app.get('/location/:state/:city', function(req, res){
 	// Guardar en session la ciudad y estados que se visitaron
+  req.session.state = req.params.state
+  req.session.city = req.params.city
 	res.send('Welcome to '+ req.params.city +' in the beatifull state of ' + req.params.state)
 })
 
 app.get('/last', function(req, res){
 	// Mostrar la ultima ciudad y estado visitados
-})
+  if(req.session.city === undefined){
+	 res.send('You has no visited any city :\(')
+   return
+  }
+	res.send('The last city visited '+ req.session.city +' in the state ' + req.session.state)
+  })
 // Termina la declaracion de url handlers
 
 app.listen(3000, function () {

@@ -63,6 +63,21 @@ app.get('/location/:state/:city', function(request, response){
   response.send('Bienvenido a ' + request.params.city + ' en el bonito estade de ' + request.params.state)
 })
 
+app.get('/location/distrito-federal', function(request, response){
+  response.redirect('/location/ciudad-de-mexico/ciudad-de-mexico')
+})
+
+// Dirigir http://localhost:3000/1NW0EBW
+// a https://github.com/latteware/clase-3
+
+app.get('/:uuid', function(request, response){
+  if(request.params.uuid == "1NW0EBW"){
+    response.redirect('https://github.com/latteware/clase-3')
+  } else {
+    response.send(404, 'Not Found')
+  }
+})
+
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!')
 })
