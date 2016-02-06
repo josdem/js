@@ -50,11 +50,19 @@ app.get('/', function (req, res) {
 app.get('/gift/:item', function (req, res){
 	// Agregar a flash un mensaje de regalo secreto
 	// Redirigir a /secret-gift
+  req.flash('gift', req.params.item)
+  res.redirect('/secret-gift')
 })
 
 app.get('/secret-gift', function (req, res){
 	// Checar el mensaje secreto y mostrarlo
 	// o decir que no tiene regalo el usuario
+  var gift = res.locals.flash.pop()
+  if(gift){
+    res.send('There is a gift for you: ' + gift.message)
+  } else {
+    res.send('There is no gift')
+  }
 })
 // Termina la declaracion de url handlers
 

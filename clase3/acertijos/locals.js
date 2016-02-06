@@ -46,16 +46,22 @@ app.use( bodyParser.urlencoded({ extended:false }) )
 app.use(function (req, res, next){
 	// Pasar a locals el nombre del usuario
 
+  res.locals.username = req.session.username
 	next()
 })
 
 app.get('/', function (req, res) {
 	// Mostrar john doe o usuario
-	res.send('Hello John Doe')
+  if(res.locals.username){
+	  res.send('Hello ' + res.locals.username)
+  } else {
+	  res.send('Hello Joe Doe')
+  }
 })
 
 app.get('/u/:username', function (req, res){
 	// Agregar en session el username
+  req.session.username = req.params.username
 	res.send('Welcome '+ req.params.username)
 })
 // Termina la declaracion de url handlers
