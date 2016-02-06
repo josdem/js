@@ -47,6 +47,10 @@ app.get('/', function (req, res) {
 	res.send('This is my simple server')
 })
 
+app.get('/r/:subreddit', function(request, response){
+  response.send('Estas en: '+ request.params.subreddit)
+})
+
 // Hacer un URL handler para:
 // /location/quintana-roo/cancun
 // /location/estado-de-mexico/toluca
