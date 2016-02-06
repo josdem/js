@@ -48,8 +48,12 @@ app.get('/', function (req, res) {
 })
 
 app.get('/view-counter', function (req, res){
-	// Hacer un contador de visitas a esta url
-	// si no hay contador, empezar el contador en 1
+  if(req.session.counter){
+    req.session.counter += 1
+  } else {
+    req.session.counter = 1
+  }
+  res.send('You have visited this page ' + req.session.counter + ' times')
 })
 // Termina la declaracion de url handlers
 

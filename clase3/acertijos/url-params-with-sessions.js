@@ -57,7 +57,7 @@ app.get('/location/:state/:city', function(req, res){
 app.get('/last', function(req, res){
 	// Mostrar la ultima ciudad y estado visitados
   if(req.session.city === undefined){
-	 res.send('You has no visited any city :\(')
+	 res.send('You have no visited any city :\(')
    return
   }
 	res.send('The last city visited '+ req.session.city +' in the state ' + req.session.state)
