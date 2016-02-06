@@ -59,6 +59,10 @@ app.get('/r/:subreddit', function(request, response){
 
 // Termina la declaracion de url handlers
 
+app.get('/location/:state/:city', function(request, response){
+  response.send('Bienvenido a ' + request.params.city + ' en el bonito estade de ' + request.params.state)
+})
+
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!')
 })
