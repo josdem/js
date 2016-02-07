@@ -24,24 +24,24 @@ var application = express()
   //Cache configuration
   // ToDo: Change cache:true in production
   application.set('view cache', false)
-swig.setDefaults({cache:false})
+  swig.setDefaults({cache:false})
 
   //Adding body parser to express
 application.use( bodyParser.urlencoded({ extended:false }))
 
-  application.get("/",function(request, response){
+application.get("/",function(request, response){
 
-    ToDo.find({}, function(err, docs){
-      if(err){
-        return response.send(500, 'Internal Server Error')
-      }
+  ToDo.find({}, function(err, docs){
+    if(err){
+      return response.send(500, 'Internal Server Error')
+    }
 
-      response.render("index", {
-        title: "Esta es una app",
-        toDos: docs
-      })
+    response.render("index", {
+      title: "Esta es una app",
+      toDos: docs
     })
   })
+})
 
 application.post('/addToDo', function(request, response){
     ToDo.create({
