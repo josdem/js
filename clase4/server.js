@@ -99,7 +99,7 @@ app.get('/', function (req, res) {
 				return res.send(500, 'Internal Server Error')
 			}
 
-			res.render('index-final', {
+			res.render('index', {
 				users:users,
 				movies: movies
 			})
@@ -142,7 +142,7 @@ app.get('/search', function (req, res){
 		return res.render('search')
 	}
 
-	omdb.search({term:req.query.q, type:'movie'}, function(err, movies) {
+	omdb.search(req.query.q, function(err, movies) {
 		if(err){
 			return res.send(500, 'Internal Server Error')
 		}
@@ -211,7 +211,7 @@ var findOrCreateMovie = function(req, res, next){
 				}
 
 				res.locals.movie = doc
-				next()				
+				next()
 			})
 		})
 	})
@@ -224,7 +224,7 @@ app.post('/movies/:movieId/add-to-queue', findOrCreateMovie, function (req, res)
 	}, function(err, ref){
 		if(err){
 			return res.send(500, 'Internal Server Error')
-		}		
+		}
 
 		if(!ref){
 			MovieUserRefs.create({
@@ -243,11 +243,11 @@ app.post('/movies/:movieId/add-to-queue', findOrCreateMovie, function (req, res)
 			ref.save(function(err){
 				if(err){
 					return res.send(500, 'Internal Server Error')
-				}				
+				}
 
 				req.flash('added', 'Movie added to your queue')
 				res.redirect('/movies/'+res.locals.movie.imdb)
-			})			
+			})
 		}else{
 			req.flash('added', 'Movie added to your queue')
 			res.redirect('/movies/'+res.locals.movie.imdb)
@@ -270,7 +270,7 @@ app.post('/movies/:movieId/watched', findOrCreateMovie, function (req, res){
 			ref.save(function(err){
 				if(err){
 					return res.send(500, 'Internal Server Error')
-				}				
+				}
 
 				req.flash('success', 'Movie marked as watched')
 				res.redirect('/movies/'+res.locals.movie.imdb)
@@ -286,7 +286,7 @@ app.post('/movies/:movieId/watched', findOrCreateMovie, function (req, res){
 			})
 		}
 
-	})	
+	})
 })
 // Termina la app
 
@@ -324,7 +324,7 @@ app.get('/log-out', function (req, res){
 app.post('/sign-up', function (req, res){
 	if(!req.body.username || !req.body.password){
 		req.flash('sign-up-error', 'To sign up you need a username and a password')
-		return res.redirect('/sign-up')		
+		return res.redirect('/sign-up')
 	}
 
 	User.findOne({username: req.body.username}, function(err, doc){
