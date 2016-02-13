@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Movie queue{% endblock %}
+
+{% block head %}
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">	
+		<h1>Search</h1>
+		
+		<p>Search movies to add to your list</p>
+		<div class="row">
+			<div class="col-xs-12">			
+				<form action="/search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for movies to add to your list" name="q" value="{{ search }}">
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button">Go!</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="container">	
+	{% for movie in movies %}
+	<div class="row">
+		<h4>{{ movie.title }}(<a href="http://www.imdb.com/title/{{ movie.imdb }}/" target="_blank">link</a>)</h4>
+		<form class="btn-form" method="POST" action="/movies/{{ movie.imdb }}/add-to-queue">
+			<button class="btn btn-success">Add to queue</button>
+		</form>
+		<form class="btn-form" method="POST" action="/movies/{{ movie.imdb }}/watched">
+			<button class="btn btn-primary">Mark as watched</button>
+		</form>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

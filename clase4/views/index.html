@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h4>Search movies</h4>
+	<div>
+		<form action="/search">
+			<input name="q"/>
+		</form>
+	</div>
+
+	<h4>Users</h4>
+	<ul>
+	{% for user in users %}
+		<li><a href="/user/{{ user.uuid }}">{{ user.username }}</a></li>
+	{% endfor %}
+	</ul>
+
+	<h4>Movies</h4>
+	<ul>
+	{% for movie in movies %}
+		<li><a href="/movies/{{ movie.imdb }}">{{ movie.title }}</a></li>
+	{% endfor %}
+	</ul>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}Movie queue{% endblock %}
+
+{% block head %}
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">	
+		<h1>Welcome to Movie queue</h1>
+		<p>Keep a public list of movies you want to watch and you have watched lately so your friends can invite you to the cinema</p>
+
+		{% if user %}
+		<h4>Search movies to add to your list</h4>
+		<div class="row">
+			<div class="col-xs-12">			
+				<form action="/search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for movies to add to your list" name="q">
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button">Go!</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		{% endif %}
+	</div>	
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-7">
+			<h4>Movies</h4>
+			{% for movie in movies %}
+			<a class="movie-tile" href="/movies/{{ movie.imdb }}">
+				<div class="row">				
+					<div class="col-xs-3">
+						<img class="poster" src="{{ movie.poster }}"/>
+					</div>
+					<div class="col-xs-9">
+						<h6>{{ movie.title }}</h6>
+						<p>{{ movie.plot }}</p>
+					</div>
+				</div>
+			</a>
+			{% endfor %}
+		</div>
+		<div class="col-xs-12 col-sm-4 col-sm-offset-1">
+			<h4>Users</h4>
+			{% for user in users %}
+			<div><a href="/user/{{ user.uuid }}">{{ user.username }}</a></div>
+			{% endfor %}
+		</div>		
+	</div>
+</div>
+
+{% endblock %}

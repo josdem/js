@@ -1,0 +1,18 @@
+body{
+	padding-top: 50px;
+	padding-bottom: 100px;
+}
+
+.poster{
+	width: 100%
+}
+
+.movie-tile{
+	display: block;
+	color: darkgrey;
+	margin-bottom: 30px;
+}
+
+.btn-form{
+	display: inline-block;
+}

@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}Movie queue{% endblock %}
+
+{% block head %}
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container">
+		<h1>{{currentUser.username}}</h1>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<h4>Movies in queue</h4>
+			{% for ref in refs %}
+				{% if !ref.watched %}
+				<a class="movie-tile" href="/movies/{{ ref.movie.imdb }}">
+					<div class="row">				
+						<div class="col-xs-3">
+							<img class="poster" src="{{ ref.movie.poster }}"/>
+						</div>
+						<div class="col-xs-9">
+							<h6>{{ ref.movie.title }}</h6>
+							<p>{{ ref.movie.plot }}</p>
+						</div>
+					</div>
+				</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="col-xs-12 col-sm-6">
+			<h4>Movies watched</h4>
+			{% for ref in refs %}
+				{% if ref.watched %}
+				<a class="movie-tile" href="/movies/{{ ref.movie.imdb }}">
+					<div class="row">				
+						<div class="col-xs-3">
+							<img class="poster" src="{{ ref.movie.poster }}"/>
+						</div>
+						<div class="col-xs-9">
+							<h6>{{ ref.movie.title }}</h6>
+							<p>{{ ref.movie.plot }}</p>
+						</div>
+					</div>
+				</a>				
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

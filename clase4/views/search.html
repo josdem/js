@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div>
+		<p>Search movies</p>
+		<form action="/search">
+			<input name="q" value="{{ search }}"/>
+		</form>
+	</div>
+
+	{% for movie in movies %}
+	<div>
+		<h4>{{ movie.title }}(<a href="http://www.imdb.com/title/{{ movie.imdb }}/" target="_blank">link</a>)</h4>
+		<form method="POST" action="/movies/{{ movie.imdb }}/add-to-queue">
+			<button>Add to queue</button>
+		</form>
+	</div>
+	{% endfor %}
+</body>
+</html>
