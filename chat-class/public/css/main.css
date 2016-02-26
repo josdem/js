@@ -1,0 +1,22 @@
+body {
+	padding-top: 50px;
+}
+
+.registry-form{
+	max-width: 400px;
+}
+
+.registry-form .row{
+	margin-bottom: 10px;
+}
+
+.registry-form .form-label{
+	line-height: 26px;
+}
+.registry-form .alert{
+	margin: 10px 0;
+}
+
+.full-width{
+	width: 100%;
+}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}Welcome to <% Proyect name %>{% endblock %}
+
+{% block head %}
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+<div class="container registry-form">	
+	{% if error %}
+		<div class="alert alert-danger" role="alert">{{ error.message }}</div>
+	{% endif %}
+
+	<form method="POST" action="/sign-up">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h2>Log in</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 text-right form-label">Name</div>
+			<div class="col-xs-9"><input class="full-width" name="username"/></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 text-right form-label">Password</div>
+			<div class="col-xs-9"><input class="full-width" name="password" type="password"/></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 col-xs-offset-3">
+				<button class="full-width btn btn-primary" type="submit">Log in</button>
+			</div>
+		</div>
+	</form>
+</div>	
+{% endblock %}

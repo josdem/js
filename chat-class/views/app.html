@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}Welcome to chat example{% endblock %}
+
+{% block head %}
+	{% parent %}
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="container" id="app"></div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/build/main.js"></script>
+<script type="text/javascript">
+window.currentUser = "{{ user.username }}"
+</script>
+{% endblock %}
