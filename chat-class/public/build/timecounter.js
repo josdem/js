@@ -70,6 +70,11 @@
 				counter: this.state.counter + 1
 			});
 		},
+		resetHandler: function () {
+			this.setState({
+				counter: 0
+			});
+		},
 		render: function () {
 			var date = this.state.time.toString();
 	
@@ -93,6 +98,15 @@
 						'button',
 						{ onClick: this.clickHandler },
 						'ClickMe'
+					)
+				),
+				React.createElement(
+					'p',
+					null,
+					React.createElement(
+						'button',
+						{ onClick: this.resetHandler },
+						'Reset'
 					)
 				)
 			);

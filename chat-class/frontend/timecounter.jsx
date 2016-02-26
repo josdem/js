@@ -23,6 +23,11 @@ var TimeCounter = React.createClass({
       counter: this.state.counter + 1
     })
   },
+  resetHandler: function(){
+    this.setState({
+      counter: 0
+    })
+  },
 	render: function(){
 		var date = this.state.time.toString()
 
@@ -30,6 +35,7 @@ var TimeCounter = React.createClass({
 			<p>{date}</p>
       <p>{this.state.counter}</p>
       <p><button onClick={this.clickHandler}>ClickMe</button></p>
+      <p><button onClick={this.resetHandler}>Reset</button></p>
 		</div>)
 	}
 })
