@@ -34,7 +34,7 @@ gulp.task('webpack', function (callback) {
 		if (err) { throw new gutil.PluginError('webpack', err) }
 		var statsAsString = stats.toString({})
 
-		gutil.log('[webpack]', statsAsString.split('chunk')[0])
+		gutil.log('[webpack]', statsAsString)
 		livereload.changed('public/js/main.js')
 		callback()
 	})
