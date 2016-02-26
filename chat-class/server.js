@@ -34,6 +34,7 @@ var messageSchema = Schema({
 	content : String,
 	user: { type: Schema.Types.ObjectId, ref: 'User' },
 	uuid : {type: String, default: uuid.v4},
+  title: String,
 	date: { type: Date, default: Date.now }
 })
 
@@ -160,7 +161,7 @@ app.get('/log-out', function (req, res){
 app.post('/sign-up', function (req, res){
 	if(!req.body.username || !req.body.password){
 		req.flash('sign-up-error', 'To sign up you need a username and a password')
-		return res.redirect('/sign-up')		
+		return res.redirect('/sign-up')
 	}
 
 	User.findOne({username: req.body.username}, function(err, doc){

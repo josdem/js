@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var Messages = mongoose.model('Message')
 
-var router = express.Router();  
+var router = express.Router();
 
 router.all('*', function (req, res, next) {
 	if(!res.locals.user){
@@ -35,6 +35,7 @@ router.get('/', function(req, res){
 router.post('/', function(req, res){
 	Messages.create({
 		content: req.body.content,
+		title: req.body.title,
 		user: res.locals.user
 	}, function(err, doc){
 		if(err){

@@ -4,7 +4,7 @@ var _ = window._ = require('underscore')
 var React = require('react')
 var ReactDOM = require('react-dom')
 
-var Backbone = require('Backbone')
+var Backbone = require('backbone')
 var Mixins = require('backbone-react-component')
 
 var MessagesModel = Backbone.Model.extend({
@@ -38,8 +38,8 @@ var ChatAppSimple = React.createClass({
 		}
 	},
 	handleContentChange: function(e) {
-    	this.setState({content: e.target.value});
-	},
+     this.setState({content: e.target.value});
+	i},
 	handleSubmit: function(e) {
 		e.preventDefault();
 
@@ -66,15 +66,15 @@ var ChatAppSimple = React.createClass({
 				<div className="col-lg-6">
 					<form onSubmit={this.handleSubmit}>
 						<div className="input-group">
-							<input 
+							<input
 								type="text"
 								className="form-control"
 								placeholder="Message for..."
 								onChange={this.handleContentChange}
-								value={this.state.content}
+								value={this.state.content + this.state.timestamp}
 							/>
 							<span className="input-group-btn">
-								<button 
+								<button
 									className="btn btn-default"
 									type="submit"
 								>
@@ -105,26 +105,30 @@ var ChatMessage = React.createClass({
 		}
 
 		return (<div className="row">
-			<div className="col-xm-12"><b>{ data.user }:</b>{ data.content }</div>
+			<div className="col-xm-12"><b>{ data.user }:</b>{ data.content }<p>{ data.title}</p></div>
 			{ controls }
 		</div>)
-	}	
+	}
 })
 
 var ChatApp = React.createClass({
 	mixins: [Mixins],
 	getInitialState: function() {
 		return {
-			content: ''
+			content: '',
+      title: ''
 		}
 	},
 	handleContentChange: function(e) {
     	this.setState({content: e.target.value});
 	},
+  handleTitleChange: function(e) {
+    	this.setState({title: e.target.value});
+	},
 	handleSubmit: function(e) {
 		e.preventDefault();
 
-		var model = new MessagesModel({content:this.state.content})
+		var model = new MessagesModel({content:this.state.content, title:this.state.title})
 		var xhr = model.save()
 
 		xhr.done(function(data){
@@ -136,7 +140,8 @@ var ChatApp = React.createClass({
 		})
 
 		this.setState({
-			content:''
+			content:'',
+      title:''
 		})
 	},
 	render: function() {
@@ -154,7 +159,14 @@ var ChatApp = React.createClass({
 				<div className="col-lg-6">
 					<form onSubmit={this.handleSubmit}>
 						<div className="input-group">
-							<input 
+            <input
+								type="text"
+								className="form-control"
+								placeholder="Title for..."
+								onChange={this.handleTitleChange}
+								value={this.state.title}
+							/>
+							<input
 								type="text"
 								className="form-control"
 								placeholder="Message for..."
@@ -162,7 +174,7 @@ var ChatApp = React.createClass({
 								value={this.state.content}
 							/>
 							<span className="input-group-btn">
-								<button 
+								<button
 									className="btn btn-default"
 									type="submit"
 								>
@@ -178,7 +190,7 @@ var ChatApp = React.createClass({
 	}
 })
 
- 
+
 ReactDOM.render(
 	<ChatApp collection={messages}/>,
 	document.getElementById('app')
